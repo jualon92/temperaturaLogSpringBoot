@@ -1,0 +1,46 @@
+package com.example.demo.temperatura;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+ 
+ 
+@RestController
+public class TemperaturaController {
+
+	 
+		@Autowired
+		private TemperaturaService temperaturaService;
+		
+		@RequestMapping("/temperaturas")
+		public ArrayList<Temperatura> getTemperaturas() {
+			return temperaturaService.getAllTemperaturas();
+		}
+		
+		@RequestMapping("/temperaturas/{id}")
+		public Temperatura getTemperatura(@PathVariable String id) {
+			return temperaturaService.getTemperatura(id);
+		}
+		
+		@RequestMapping(method=RequestMethod.DELETE, value="/temperaturas/{id}")
+		public void deleteTemperatura(@PathVariable String id) {
+		 temperaturaService.deleteTemperatura(id);
+		}
+		
+		
+		@RequestMapping(method=RequestMethod.PUT, value="/temperaturas/{id}")
+		public void updateTemperatura(@RequestBody Temperatura temperatura, @PathVariable String id) {
+		 temperaturaService.updateTemperatura(id, temperatura);
+		}
+		
+		@RequestMapping(method=RequestMethod.POST, value="/temperaturas")
+		public void postTemperatura(@RequestBody Temperatura temperatura) {
+		 temperaturaService.addTemperatura(temperatura);
+		}
+}
