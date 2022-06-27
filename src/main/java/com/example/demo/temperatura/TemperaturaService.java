@@ -1,6 +1,10 @@
 package com.example.demo.temperatura;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +17,16 @@ public class TemperaturaService {
 	private TemperaturaRepository temperaturaRepository;
 	
 
-	public void addTemperatura(Temperatura nuevaTemperatura) {
-		temperaturaRepository.save(nuevaTemperatura);
+	public void addTemperatura(Double grados) {
+		Date date = new Date();
+		DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		df.setTimeZone(TimeZone.getTimeZone("America/Buenos_Aires"));
+	 
+		Temperatura temperaturaNueva = new Temperatura(df.format(date), grados);
+				
+		temperaturaRepository.save(temperaturaNueva);
 	}
+	
 	
 	public ArrayList<Temperatura> getAllTemperaturas() {
 		ArrayList <Temperatura> temperaturas = new ArrayList<>(); //ini arraylist

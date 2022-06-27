@@ -40,7 +40,7 @@ public class TemperaturaController {
 		}
 		
 		@RequestMapping(method=RequestMethod.POST, value="/temperaturas")
-		public void postTemperatura(@RequestBody Temperatura temperatura) {
-		 temperaturaService.addTemperatura(temperatura);
+		public void postTemperatura(@RequestBody Double grados) { //arduino pasa grados medicion como param
+		 temperaturaService.addTemperatura(grados);
 		}
 }
