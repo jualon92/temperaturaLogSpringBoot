@@ -28,6 +28,14 @@ public class TemperaturaController {
 			return temperaturaService.getTemperatura(id);
 		}
 		
+		
+		@RequestMapping("/temperaturas/actual")
+		public Temperatura getTemperatura() {
+			return temperaturaService.findFirst();
+		}
+		
+		
+		
 		@RequestMapping(method=RequestMethod.DELETE, value="/temperaturas/{id}")
 		public void deleteTemperatura(@PathVariable String id) {
 		 temperaturaService.deleteTemperatura(id);

@@ -27,6 +27,9 @@ public class TemperaturaService {
 		temperaturaRepository.save(temperaturaNueva);
 	}
 	
+	public Temperatura findFirst() {
+		return  temperaturaRepository.findFirstByOrderByIdDesc();
+	}
 	
 	public ArrayList<Temperatura> getAllTemperaturas() {
 		ArrayList <Temperatura> temperaturas = new ArrayList<>(); //ini arraylist
