@@ -1,7 +1,5 @@
 package com.example.demo.temperatura;
 
-import java.util.Date;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
  
@@ -21,6 +19,7 @@ public class Temperatura {
 		this.fecha = fecha;
 		this.grados = grados;
 	}
+
 
 	public String getId() {
 		return id;

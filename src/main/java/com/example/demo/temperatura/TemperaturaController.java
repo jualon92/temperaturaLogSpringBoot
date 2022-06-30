@@ -1,6 +1,8 @@
 package com.example.demo.temperatura;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +36,10 @@ public class TemperaturaController {
 			return temperaturaService.findFirst();
 		}
 		
-		
+		@RequestMapping("/temperaturas/tendencia")
+		public Temperatura  getTendencia() {
+			return temperaturaService.findHourAgo();
+		}
 		
 		@RequestMapping(method=RequestMethod.DELETE, value="/temperaturas/{id}")
 		public void deleteTemperatura(@PathVariable String id) {
