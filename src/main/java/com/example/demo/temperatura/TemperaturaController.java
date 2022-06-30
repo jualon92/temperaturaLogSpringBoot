@@ -41,6 +41,11 @@ public class TemperaturaController {
 			return temperaturaService.findHourAgo();
 		}
 		
+		@RequestMapping("/temperaturas/cantidad/{numero}")
+		public List <Temperatura> getTemperaturasCantidad(@PathVariable Integer numero) {
+			return temperaturaService.findAllTemperaturas(numero);
+		}
+		
 		@RequestMapping(method=RequestMethod.DELETE, value="/temperaturas/{id}")
 		public void deleteTemperatura(@PathVariable String id) {
 		 temperaturaService.deleteTemperatura(id);

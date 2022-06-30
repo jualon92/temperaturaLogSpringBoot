@@ -13,4 +13,5 @@ public interface TemperaturaRepository extends MongoRepository<Temperatura, Stri
 	public Temperatura findFirstByOrderByIdDesc();
 	public List <Temperatura> findFirst2ByOrderByIdDesc();
 	public List <Temperatura> findAllByFechaBetween(Date fechaInicial, Date oneHourBack);
+	public List <Temperatura >findAllByOrderByIdDesc(Pageable pageable);
 }

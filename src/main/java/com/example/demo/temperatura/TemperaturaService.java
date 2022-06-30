@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
  
@@ -75,6 +76,9 @@ public class TemperaturaService {
 		 
 	}
 	
+	public List <Temperatura> findAllTemperaturas(Integer cantidad){
+		return temperaturaRepository.findAllByOrderByIdDesc(PageRequest.of(0, cantidad));
+	}
  
 	
 	public ArrayList<Temperatura> getAllTemperaturas() {
