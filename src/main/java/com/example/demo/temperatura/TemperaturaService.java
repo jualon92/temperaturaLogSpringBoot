@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -79,7 +80,57 @@ public class TemperaturaService {
 	public List <Temperatura> findAllTemperaturas(Integer cantidad){
 		return temperaturaRepository.findAllByOrderByIdDesc(PageRequest.of(0, cantidad));
 	}
- 
+	 
+	public Temperatura  findMaxTempFrom() {
+		return temperaturaRepository.findFirstByOrderByGradosDesc();
+	} 
+	
+	public Temperatura  findMaxTempFromNumber(Integer cantidad) {
+		List <Temperatura> listaTemperaturasRecientes = temperaturaRepository.findAllByOrderByIdDesc(PageRequest.of(0, cantidad));
+		int indiceDeValorMaximo = -1; 
+		 double max = -1;
+		for(int i = 0; i < listaTemperaturasRecientes.size() ; i++) {
+		        if(listaTemperaturasRecientes.get(i).getGrados() > max) {
+		        	indiceDeValorMaximo = i;
+		        	max = listaTemperaturasRecientes.get(i).getGrados();
+		        }
+		  }
+		 return listaTemperaturasRecientes.get(indiceDeValorMaximo);
+		 
+		
+	}
+	
+	public Temperatura  findMinTempFromNumber(Integer cantidad) {
+		List <Temperatura> listaTemperaturasRecientes = temperaturaRepository.findAllByOrderByIdDesc(PageRequest.of(0, cantidad));
+		int indiceDeValorMaximo = -1; 
+		 double min = 999991;
+		for(int i = 0; i < listaTemperaturasRecientes.size() ; i++) {
+		        if(listaTemperaturasRecientes.get(i).getGrados() < min) {
+		        	indiceDeValorMaximo = i;
+		        	min = listaTemperaturasRecientes.get(i).getGrados();
+		        }
+		  }
+		 return listaTemperaturasRecientes.get(indiceDeValorMaximo);
+		 
+		
+	}
+	
+	public Double  findPromedioFromNumber(Integer cantidad) {
+		List <Temperatura> listaTemperaturasRecientes = temperaturaRepository.findAllByOrderByIdDesc(PageRequest.of(0, cantidad));
+		Integer cant =  listaTemperaturasRecientes.size();
+		Double acu = listaTemperaturasRecientes.stream().mapToDouble(temp -> temp.getGrados()).sum();
+		Double prom = acu / cant; 
+		return Math.round(prom * 100.0) / 100.0;
+		
+	 
+	}
+	
+	
+	public Temperatura getTemperaturaLog(Integer cantidadLecturaAtras) {
+	     
+		return  this.findFirst();
+	}
+	
 	
 	public ArrayList<Temperatura> getAllTemperaturas() {
 		ArrayList <Temperatura> temperaturas = new ArrayList<>(); //ini arraylist

@@ -13,5 +13,10 @@ public interface TemperaturaRepository extends MongoRepository<Temperatura, Stri
 	public Temperatura findFirstByOrderByIdDesc();
 	public List <Temperatura> findFirst2ByOrderByIdDesc();
 	public List <Temperatura> findAllByFechaBetween(Date fechaInicial, Date oneHourBack);
-	public List <Temperatura >findAllByOrderByIdDesc(Pageable pageable);
+	public List <Temperatura> findAllByOrderByIdDesc(Pageable pageable);
+	
+	public Temperatura findFirstByOrderByGradosDesc();  //returns max temp of record.
+	 //obtener 10 entradas. encontrar el mayor.
+	//encontrar 7.       =>  tomar el max 
+	 
 }
