@@ -52,7 +52,7 @@ public class TemperaturaController {
 		
 		
 		//estadisticas
-		@RequestMapping("/temperaturas/num/{numero}")
+		@RequestMapping("/temperaturas/cantidad/{numero}")
 		public List <Temperatura>  getTemperaturasNum(@PathVariable Integer numero) {
 			return temperaturaService.findAllTemperaturas(numero);
 		} 
