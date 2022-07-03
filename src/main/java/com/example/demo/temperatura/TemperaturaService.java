@@ -117,11 +117,18 @@ public class TemperaturaService {
 	
 	public Double  findPromedioFromNumber(Integer cantidad) {
 		List <Temperatura> listaTemperaturasRecientes = temperaturaRepository.findAllByOrderByIdDesc(PageRequest.of(0, cantidad));
-		Integer cant =  listaTemperaturasRecientes.size();
-		Double acu = listaTemperaturasRecientes.stream().mapToDouble(temp -> temp.getGrados()).sum();
-		Double prom = acu / cant; 
-		return Math.round(prom * 100.0) / 100.0;
-		
+		double cant =  listaTemperaturasRecientes.size();
+		double acu = 0.00;
+		// Double acu = listaTemperaturasRecientes.stream().mapToDouble(temp -> temp.getGrados()).sum();  
+	      
+		 
+	     for(Integer i = 0; i < listaTemperaturasRecientes.size(); i++ ) {
+			acu = acu + listaTemperaturasRecientes.get(i).getGrados();
+		} 
+		 
+		Double prom = acu / cant;
+		return prom;
+		 
 	 
 	}
 	
