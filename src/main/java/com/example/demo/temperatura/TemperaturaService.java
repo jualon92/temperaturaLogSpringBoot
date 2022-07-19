@@ -71,7 +71,7 @@ public class TemperaturaService {
 		*/
 		
 		 
-		List <Temperatura> listaTemperaturas = temperaturaRepository.findFirst2ByOrderByIdDesc();
+		List <Temperatura> listaTemperaturas = temperaturaRepository.findFirst180ByOrderByIdDesc();
 		Integer indiceUltimo = listaTemperaturas.size() - 1;
 		return listaTemperaturas.get(indiceUltimo);
 		 
